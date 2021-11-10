@@ -1,6 +1,6 @@
 # Collection_Santa_Frontend
 
-FrontEnd React APplication for MEET YOUR SANTA mini project
+FrontEnd React Application for MEET YOUR SANTA mini project
 
 _____________________
 
