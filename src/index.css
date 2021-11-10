@@ -1,0 +1,31 @@
+@import url('./vendor/normalize.css');
+
+body {
+    margin: 0 auto;
+    min-width: 320px;
+    font-family: mr-eaves-modern, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #1A1B22;
+    font-size: 18px;
+    line-height: 24px;
+    background-color: white;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    /* Chrome, Safari */
+    -moz-osx-font-smoothing: grayscale;
+    /* Firefox */
+}
+
+.flex-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
