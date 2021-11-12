@@ -1,9 +1,13 @@
 import React from "react";
 
-export default function Giftee({ giftee }) {
+export default function Giftee({ giftee, selectedName }) {
   return (
     <div>
-      <p>Your giftee name is : {giftee.name}</p>
+      {giftee && selectedName ? (
+        <p>
+          {selectedName}, your giftee name is : {giftee.name}
+        </p>
+      ) : null}
     </div>
   );
 }

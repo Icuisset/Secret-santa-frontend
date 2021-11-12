@@ -18,6 +18,29 @@ class SantaApi {
       method: "GET",
     }).then((res) => this._checkResponse(res));
   }
+
+  //PATCH http://localhost:5000/members/giftee
+  updateMemberGiftee(id, name) {
+    return fetch(this._baseUrl + "/giftee", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        _id: id,
+        name: name,
+      }),
+    }).then((res) => this._checkResponse(res));
+  }
+
+  //PATCH http://localhost:5000/members/availability
+  updateMemberAvailability(id) {
+    return fetch(this._baseUrl + "/availability", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        _id: id,
+      }),
+    }).then((res) => this._checkResponse(res));
+  }
 }
 
 const santaApi = new SantaApi({

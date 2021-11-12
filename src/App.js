@@ -55,12 +55,36 @@ function App() {
     return list[randomNumber];
   };
 
+  const updateGiftee = (id, name) => {
+    santaApi
+      .updateMemberGiftee(id, name)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const updateAvailability = (id) => {
+    santaApi
+      .updateMemberAvailability(id)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const drawSantaGiftee = () => {
     console.log("it's coming");
     console.log(selectedMember[0]._id, selectedMember[0].name);
     const randomGiftee = getRandomListItem(activeList);
     setGiftee(randomGiftee);
-    console.log(randomGiftee);
+    console.log(randomGiftee.name);
+    updateGiftee(selectedMember[0]._id, randomGiftee.name);
+    updateAvailability(randomGiftee._id);
   };
 
   return (
@@ -79,7 +103,11 @@ function App() {
               />
             }
           />
-          <Route path='/giftee' element={<Giftee giftee={giftee} />}></Route>
+          <Route
+            path='/giftee'
+            element={
+              <Giftee giftee={giftee} selectedName={selectedName} />
+            }></Route>
         </Routes>
       </div>
     </Router>
