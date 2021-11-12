@@ -1,0 +1,8 @@
+.selectname-zone {
+  display: flex;
+  flex-direction: column;
+}
+
+.confirm-button {
+  margin: 20px 0 20px;
+}

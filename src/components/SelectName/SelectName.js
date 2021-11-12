@@ -1,39 +1,49 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import './SelectName.css';
+import React from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import "./SelectName.css";
 
-export default function SelectName({memberList}) {
+export default function SelectName({ memberList }) {
+  const availableList = memberList.filter(
+    (member) => member.available === true
+  );
 
-    const [selectedName, setSelectedName] = useState("");
-    const [activeList, setActiveList] =useState([]);
+  const [selectedName, setSelectedName] = useState("");
+  const [activeList, setActiveList] = useState(availableList);
 
-    const availableList = memberList.filter((member)=>(member.available === true));
+  const changeSelection = (newName) => {
+    setSelectedName(newName);
+    console.log(newName);
+    const newActiveList = availableList.filter(
+      (member) => member.name !== newName
+    );
+    setActiveList(newActiveList);
+    console.log(newActiveList);
+  };
 
-    const initialList = Array.from(availableList).map((member,index)=>(member.name));
+  const handleClick = () => {
+    console.log("Find your happy Santee!");
+  };
 
-    const changeSelection = (newName) =>{
-        setSelectedName(newName);
-        console.log(newName);
-    };
-
-    useEffect(() => {
-        const newActiveList = initialList.filter((name)=>(name !==selectedName));
-        setActiveList(newActiveList);
-        console.log(activeList);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedName]);
-
-
-    return (
-        <div className="selectname-zone">
-            <h2>What is your name?</h2>
-            <select name="choice"onChange={(event) => changeSelection(event.target.value)}
-          value={selectedName}>
-                {Array.from(memberList).map((member, index)=>(
-                   <option key={index} value={member.name}>{member.name}</option> 
-                ))}
+  return (
+    <div className='selectname-zone'>
+      <h2>What is your name?</h2>
+      <select
+        name='choice'
+        onChange={(event) => changeSelection(event.target.value)}
+        value={selectedName}>
+        <option value=''>-- Please select your name --</option>
+        {Array.from(memberList).map((member, index) => (
+          <option key={index} value={member.name}>
+            {member.name}
+          </option>
+        ))}
       </select>
-        </div>
-    )
+      {selectedName !== "" ? (
+        <Link to='/giftee' className='confirm-button'>
+          Show me my Santa Giftee!
+        </Link>
+      ) : null}
+    </div>
+  );
 }
-
