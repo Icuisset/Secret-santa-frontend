@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useCallback } from "react";
 
 import "./App.css";
 import "./components/SelectName/SelectName";
@@ -8,6 +9,22 @@ import Giftee from "./components/Giftee/Giftee";
 import initialMembersList from "./utils/initialValues";
 
 function App() {
+  const availableList = initialMembersList.filter(
+    (member) => member.available === true
+  );
+  const [selectedName, setSelectedName] = useState("");
+  const [activeList, setActiveList] = useState(availableList);
+
+  const changeSelection = useCallback((newName) => {
+    setSelectedName(newName);
+    console.log(newName);
+    const newActiveList = availableList.filter(
+      (member) => member.name !== newName
+    );
+    setActiveList(newActiveList);
+    console.log(newActiveList);
+  }, []);
+
   return (
     <Router>
       <div className='santa'>
@@ -15,7 +32,13 @@ function App() {
         <Routes>
           <Route
             path='/'
-            element={<SelectName memberList={initialMembersList} />}
+            element={
+              <SelectName
+                memberList={initialMembersList}
+                selectedName={selectedName}
+                changeSelection={changeSelection}
+              />
+            }
           />
           <Route path='/giftee' element={<Giftee />}></Route>
         </Routes>
