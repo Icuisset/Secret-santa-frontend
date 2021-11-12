@@ -19,7 +19,8 @@ export default function SelectName({memberList}) {
     useEffect(() => {
         const newActiveList = initialList.filter((name)=>(name !==selectedName));
         setActiveList(newActiveList);
-        console.log(newActiveList);
+        console.log(activeList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedName]);
 
 
