@@ -6,6 +6,7 @@ export default function SelectName({
   memberList,
   selectedName,
   changeSelection,
+  pickSantaGiftee,
 }) {
   return (
     <div className='selectname-zone'>
@@ -22,7 +23,7 @@ export default function SelectName({
         ))}
       </select>
       {selectedName !== "" ? (
-        <Link to='/giftee' className='confirm-button'>
+        <Link to='/giftee' className='confirm-button' onClick={pickSantaGiftee}>
           Show me my Santa Giftee!
         </Link>
       ) : null}

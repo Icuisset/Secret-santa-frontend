@@ -25,6 +25,10 @@ function App() {
     console.log(newActiveList);
   }, []);
 
+  const pickSantaGiftee = useCallback(() => {
+    console.log("it's coming");
+  }, []);
+
   return (
     <Router>
       <div className='santa'>
@@ -37,6 +41,7 @@ function App() {
                 memberList={initialMembersList}
                 selectedName={selectedName}
                 changeSelection={changeSelection}
+                pickSantaGiftee={pickSantaGiftee}
               />
             }
           />
