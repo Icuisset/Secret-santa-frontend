@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 import "./components/SelectName/SelectName";
@@ -7,27 +7,61 @@ import SelectName from "./components/SelectName/SelectName";
 import Giftee from "./components/Giftee/Giftee";
 
 import initialMembersList from "./utils/initialValues";
+import santaApi from "./api/santaApi";
 
 function App() {
-  const availableList = initialMembersList.filter(
-    (member) => member.available === true
-  );
+  const [apiMembersList, setApiMembersList] = useState();
   const [selectedName, setSelectedName] = useState("");
-  const [activeList, setActiveList] = useState(availableList);
+  const [activeList, setActiveList] = useState();
+  const [selectedMember, setSelectedMember] = useState();
+  const [giftee, setGiftee] = useState();
+  const [initialList, setInitialList] = useState();
+  const [availableList, setAvailableList] = useState();
 
-  const changeSelection = useCallback((newName) => {
+  useEffect(() => {
+    santaApi
+      .getTeamMembers()
+      .then((result) => {
+        console.log(result);
+        setApiMembersList(result);
+        const newInitialList = result.filter(
+          (member) => member.santee === null
+        );
+        setInitialList(newInitialList);
+        const newAvailableList = result.filter(
+          (member) => member.available === true
+        );
+        setAvailableList(newAvailableList);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  const changeSelection = (newName) => {
     setSelectedName(newName);
     console.log(newName);
     const newActiveList = availableList.filter(
       (member) => member.name !== newName
     );
+    const newSelectedMember = apiMembersList.filter(
+      (member) => member.name === newName
+    );
     setActiveList(newActiveList);
-    console.log(newActiveList);
-  }, []);
+    setSelectedMember(newSelectedMember);
+    console.log(newActiveList, newSelectedMember);
+  };
 
-  const pickSantaGiftee = useCallback(() => {
+  const getRandomListItem = (list) => {
+    const randomNumber = Math.floor(Math.random() * activeList.length);
+    return list[randomNumber];
+  };
+
+  const drawSantaGiftee = () => {
     console.log("it's coming");
-  }, []);
+    console.log(selectedMember[0]._id, selectedMember[0].name);
+    const randomGiftee = getRandomListItem(activeList);
+    setGiftee(randomGiftee);
+    console.log(randomGiftee);
+  };
 
   return (
     <Router>
@@ -38,14 +72,14 @@ function App() {
             path='/'
             element={
               <SelectName
-                memberList={initialMembersList}
+                memberList={initialList}
                 selectedName={selectedName}
                 changeSelection={changeSelection}
-                pickSantaGiftee={pickSantaGiftee}
+                pickSantaGiftee={drawSantaGiftee}
               />
             }
           />
-          <Route path='/giftee' element={<Giftee />}></Route>
+          <Route path='/giftee' element={<Giftee giftee={giftee} />}></Route>
         </Routes>
       </div>
     </Router>

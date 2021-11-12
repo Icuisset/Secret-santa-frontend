@@ -16,11 +16,13 @@ export default function SelectName({
         onChange={(event) => changeSelection(event.target.value)}
         value={selectedName}>
         <option value=''>-- Please select your name --</option>
-        {Array.from(memberList).map((member, index) => (
-          <option key={index} value={member.name}>
-            {member.name}
-          </option>
-        ))}
+        {memberList
+          ? Array.from(memberList).map((member, index) => (
+              <option key={index} value={member.name}>
+                {member.name}
+              </option>
+            ))
+          : null}
       </select>
       {selectedName !== "" ? (
         <Link to='/giftee' className='confirm-button' onClick={pickSantaGiftee}>
