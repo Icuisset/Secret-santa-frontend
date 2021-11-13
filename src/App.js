@@ -6,7 +6,6 @@ import "./components/SelectName/SelectName";
 import SelectName from "./components/SelectName/SelectName";
 import Giftee from "./components/Giftee/Giftee";
 
-import initialMembersList from "./utils/initialValues";
 import santaApi from "./api/santaApi";
 
 function App() {
@@ -25,7 +24,7 @@ function App() {
         console.log(result);
         setApiMembersList(result);
         const newInitialList = result.filter(
-          (member) => member.santee === null
+          (member) => member.giftee === null
         );
         setInitialList(newInitialList);
         const newAvailableList = result.filter(
