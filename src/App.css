@@ -8,12 +8,6 @@
   position: relative;
 }
 
-@media screen and (max-width: 750px) {
-  .page-container {
-    padding: 0 40px 0;
-  }
-}
-
 .background {
   position: absolute;
   z-index: 1;
@@ -26,5 +20,11 @@
   z-index: 2;
   margin-top: 100px;
   margin-bottom: 0;
-  font-size: 44px;
+  font-size: 50px;
+}
+
+@media screen and (max-width: 750px) {
+  .page-title {
+    font-size: 44px;
+  }
 }
