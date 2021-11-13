@@ -1,8 +1,28 @@
-.selectname-zone {
+.select-zone {
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.select-title {
+  font-size: 34px;
 }
 
 .confirm-button {
-  margin: 20px 0 20px;
+  margin: 40px auto 20px;
+  padding: 10px 0 10px;
+  position: relative;
+  z-index: 3;
+  background-color: #f06645;
+  width: 300px;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.select-menu {
+  width: 300px;
+  margin: 0 auto 0;
+  font-size: 22px;
+  padding: 5px;
 }

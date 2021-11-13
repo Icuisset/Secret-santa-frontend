@@ -1,0 +1,15 @@
+.giftee-zone {
+  position: relative;
+  z-index: 999;
+}
+
+.giftee-message {
+  font-size: 34px;
+  color: white;
+}
+
+.giftee-name {
+  font-size: 42px;
+  font-weight: 700;
+  color: white;
+}

@@ -9,10 +9,11 @@ export default function SelectName({
   pickSantaGiftee,
 }) {
   return (
-    <div className='selectname-zone'>
-      <h2>What is your name?</h2>
+    <div className='select-zone'>
+      <h2 className='select-title'>What is your name?</h2>
       <select
         name='choice'
+        className='select-menu'
         onChange={(event) => changeSelection(event.target.value)}
         value={selectedName}>
         <option value=''>-- Please select your name --</option>
@@ -26,7 +27,7 @@ export default function SelectName({
       </select>
       {selectedName !== "" ? (
         <Link to='/giftee' className='confirm-button' onClick={pickSantaGiftee}>
-          Show me my Santa Giftee!
+          Draw your Santa Giftee!
         </Link>
       ) : null}
     </div>

@@ -5,6 +5,8 @@ import "./App.css";
 import "./components/SelectName/SelectName";
 import SelectName from "./components/SelectName/SelectName";
 import Giftee from "./components/Giftee/Giftee";
+import Footer from "./components/Footer/Footer";
+import AnimatedBackground from "./animation/AnimatedBackground";
 
 import santaApi from "./api/santaApi";
 
@@ -88,8 +90,11 @@ function App() {
 
   return (
     <Router>
-      <div className='santa'>
-        <h1>Merchandising Secret Santa 2021</h1>
+      <div className='page-container'>
+        <div className='background'>
+          <AnimatedBackground />
+        </div>
+        <h1 className='page-title'>Secret Santa 2021</h1>
         <Routes>
           <Route
             path='/'
@@ -108,6 +113,7 @@ function App() {
               <Giftee giftee={giftee} selectedName={selectedName} />
             }></Route>
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
