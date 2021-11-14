@@ -49,7 +49,6 @@
 @media screen and (max-width: 450px) {
   .popup__container_type_signin {
     width: 100%;
-    min-height: 530px;
     padding: 16px;
     min-width: 320px;
   }

@@ -60,7 +60,7 @@ class Authorize {
 }
 
 const authorize = new Authorize({
-  baseUrl: "https://www.api.news-explorer.info",
+  baseUrl: "https://api.meetyoursanta.com",
 });
 
 export default authorize;

@@ -27,7 +27,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({});
   const [isWrongCredentials, setWrongCredentials] = useState(false);
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState();
 
   /**
    * Initial Call to API to get all members
@@ -110,23 +110,6 @@ function App() {
    */
 
   /**
-   * check token is valid and return user id and email
-   */
-
-  const handleCheckTokenIsValid = (JWT) => {
-    authorize
-      .checkTokenIsValid(JWT)
-      .then((result) => {
-        console.log(result.name, result);
-        setCurrentUser(result);
-        setIsLoggedIn(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  /**
    * handle user authorization with token
    */
 
@@ -138,10 +121,6 @@ function App() {
         if (result.statusCode === 401) {
           console.log(result);
         }
-        const JWT = localStorage.getItem("jwt");
-        if (JWT) {
-          handleCheckTokenIsValid(JWT);
-        }
         setToken(result.token);
         localStorage.setItem("token", result.token);
         console.log(result.token);
@@ -149,25 +128,9 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        if (err === "Error: 401") {
-          setWrongCredentials(true);
-        }
+        setWrongCredentials(true);
       });
   };
-
-  /**
-   * handle auto login
-   */
-
-  useEffect(() => {
-    const JWT = localStorage.getItem("jwt");
-
-    console.log(JWT);
-    if (JWT) {
-      handleCheckTokenIsValid(JWT);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     if (!isLoggedIn) {
