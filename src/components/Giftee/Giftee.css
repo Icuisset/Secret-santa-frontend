@@ -1,6 +1,9 @@
 .giftee-zone {
   position: relative;
   z-index: 999;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .giftee-message {
@@ -12,4 +15,15 @@
   font-size: 42px;
   font-weight: 700;
   color: white;
+}
+
+.giftee-santa {
+  font-size: 42px;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.giftee-text {
+  font-family: rollerscript-smooth, sans-serif;
+  font-weight: 400;
 }
