@@ -9,6 +9,8 @@ import Giftee from "./components/Giftee/Giftee";
 import Footer from "./components/Footer/Footer";
 import SigninPopup from "./components/SigninPopup/SigninPopup";
 import AnimatedBackground from "./animation/AnimatedBackground";
+import TeamView from "./components/TeamView/TeamView";
+import Team from "./components/Team/Team";
 
 import santaApi from "./api/santaApi";
 import authorize from "./utils/authorize";
@@ -163,12 +165,16 @@ function App() {
               <Route
                 path='/'
                 element={
-                  <SelectName
-                    memberList={initialList}
-                    selectedName={selectedName}
-                    changeSelection={changeSelection}
-                    pickSantaGiftee={drawSantaGiftee}
-                  />
+                  initialList === [] ? (
+                    <SelectName
+                      memberList={initialList}
+                      selectedName={selectedName}
+                      changeSelection={changeSelection}
+                      pickSantaGiftee={drawSantaGiftee}
+                    />
+                  ) : (
+                    <TeamView />
+                  )
                 }
               />
               <Route
@@ -176,6 +182,9 @@ function App() {
                 element={
                   <Giftee giftee={giftee} selectedName={selectedName} />
                 }></Route>
+              <Route
+                path='/team'
+                element={<Team memberList={apiMembersList} />}></Route>
             </Routes>
             <Footer />
           </div>
