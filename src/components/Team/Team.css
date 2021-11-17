@@ -4,10 +4,23 @@
   width: 70%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
 }
 
 .team-text {
   font-size: 34px;
   margin-top: 60px;
   margin-bottom: 60px;
+}
+
+.back-button {
+  margin: 40px auto 0;
+  padding: 10px 20px 10px;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 22px;
+  text-transform: capitalize;
+  border: 1px solid white;
 }

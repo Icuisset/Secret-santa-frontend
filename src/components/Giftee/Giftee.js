@@ -1,5 +1,6 @@
 import React from "react";
 import { useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Giftee.css";
 import { gsap } from "gsap";
 
@@ -8,6 +9,7 @@ export default function Giftee({ giftee, selectedName }) {
   const avatarRef = useRef();
   const messageRef = useRef();
   const detailRef = useRef();
+  const backRef = useRef();
   const tl = useRef();
 
   useEffect(() => {
@@ -30,6 +32,9 @@ export default function Giftee({ giftee, selectedName }) {
       .from(detailRef.current, {
         opacity: 0,
         y: 500,
+      })
+      .from(backRef.current, {
+        opacity: 0,
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -58,6 +63,9 @@ export default function Giftee({ giftee, selectedName }) {
           </div>
         </div>
       ) : null}
+      <Link ref={backRef} to='/' className='back-button_giftee'>
+        Go Back
+      </Link>
     </div>
   );
 }

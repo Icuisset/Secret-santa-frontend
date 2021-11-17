@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./Team.css";
 
@@ -13,6 +14,9 @@ export default function Team({ memberList }) {
             <TeamCard key={index} member={member} />
           ))
         : null}
+      <Link to='/' className='back-button'>
+        Go Back
+      </Link>
     </div>
   );
 }

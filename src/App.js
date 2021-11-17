@@ -9,8 +9,8 @@ import Giftee from "./components/Giftee/Giftee";
 import Footer from "./components/Footer/Footer";
 import SigninPopup from "./components/SigninPopup/SigninPopup";
 import AnimatedBackground from "./animation/AnimatedBackground";
-import TeamView from "./components/TeamView/TeamView";
 import Team from "./components/Team/Team";
+import TeamView from "./components/TeamView/TeamView";
 
 import santaApi from "./api/santaApi";
 import authorize from "./utils/authorize";
@@ -162,19 +162,16 @@ function App() {
             </div>
             <h1 className='page-title'>Secret Santa 2021</h1>
             <Routes>
+              <Route path='/' element={<TeamView />} />
               <Route
-                path='/'
+                path='/draw'
                 element={
-                  initialList === [] ? (
-                    <SelectName
-                      memberList={initialList}
-                      selectedName={selectedName}
-                      changeSelection={changeSelection}
-                      pickSantaGiftee={drawSantaGiftee}
-                    />
-                  ) : (
-                    <TeamView />
-                  )
+                  <SelectName
+                    memberList={initialList}
+                    selectedName={selectedName}
+                    changeSelection={changeSelection}
+                    pickSantaGiftee={drawSantaGiftee}
+                  />
                 }
               />
               <Route
