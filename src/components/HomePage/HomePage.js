@@ -18,6 +18,10 @@ export default function TeamView({
       <div className='show-zone'>
         {!selectedTeam ? (
           <>
+            <p>
+              View an existing team, update your member profile and draw your
+              giftee
+            </p>
             <input value={teamID} onChange={(e) => setTeamID(e.target.value)} />
             <button
               type='button'
@@ -33,7 +37,12 @@ export default function TeamView({
                   Sign in to create a new team
                 </button>
               </>
-            ) : null}
+            ) : (
+              <>
+                <p>- OR -</p>
+                <Link to='/myteams'>Create and manage teams</Link>
+              </>
+            )}
           </>
         ) : null}
         {selectedTeam ? (
