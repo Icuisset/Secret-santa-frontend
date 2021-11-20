@@ -20,11 +20,12 @@ function App() {
   const [selectedName, setSelectedName] = useState("");
   const [activeList, setActiveList] = useState();
   const [selectedMember, setSelectedMember] = useState();
+  const [selectedTeam, setSelectedTeam] = useState();
   const [giftee, setGiftee] = useState();
   const [initialList, setInitialList] = useState();
   const [availableList, setAvailableList] = useState();
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  /* test without popup*/
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isSigninPopupOpen, setIsSigninPopupOpen] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
@@ -37,21 +38,21 @@ function App() {
 
   useEffect(() => {
     santaApi
-      .getTeamMembers()
+      .getTeamMembers(selectedTeam)
       .then((result) => {
         console.log(result);
         setApiMembersList(result);
-        const newInitialList = result.filter(
-          (member) => member.giftee === null
-        );
+        const newInitialList = result.filter((member) => !member.giftee);
+        console.log(newInitialList);
         setInitialList(newInitialList);
         const newAvailableList = result.filter(
           (member) => member.available === true
         );
+        console.log(newAvailableList);
         setAvailableList(newAvailableList);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [selectedTeam]);
 
   /**
    * Handle Name selected and draw
@@ -162,7 +163,15 @@ function App() {
             </div>
             <h1 className='page-title'>Secret Santa 2021</h1>
             <Routes>
-              <Route path='/' element={<TeamView />} />
+              <Route
+                path='/'
+                element={
+                  <TeamView
+                    selectedTeam={selectedTeam}
+                    setSelectedTeam={setSelectedTeam}
+                  />
+                }
+              />
               <Route
                 path='/draw'
                 element={

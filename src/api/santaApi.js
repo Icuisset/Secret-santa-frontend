@@ -13,15 +13,15 @@ class SantaApi {
   }
 
   //GET http://localhost:5000/members
-  getTeamMembers() {
-    return fetch(this._baseUrl + "/members", {
+  getTeamMembers(teamid) {
+    return fetch(this._baseUrl + "/members/team/" + teamid, {
       method: "GET",
     }).then((res) => this._checkResponse(res));
   }
 
   //PATCH http://localhost:5000/members/giftee
   updateMemberGiftee(id, name) {
-    return fetch(this._baseUrl + "members/giftee", {
+    return fetch(this._baseUrl + "/members/giftee", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -33,7 +33,7 @@ class SantaApi {
 
   //PATCH http://localhost:5000/members/availability
   updateMemberAvailability(id) {
-    return fetch(this._baseUrl + "members/availability", {
+    return fetch(this._baseUrl + "/members/availability", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
