@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navigate } from "react-router";
 import { useState, useEffect } from "react";
 import UserContext from "./contexts/CurrentUserContext";
 
@@ -14,7 +15,7 @@ import SignupPopup from "./components/SignupPopup/SignupPopup";
 import SuccessPopup from "./components/SuccessPopup/SuccessPopup";
 import AnimatedBackground from "./animation/AnimatedBackground";
 import Team from "./components/Team/Team";
-import TeamView from "./components/TeamView/TeamView";
+import HomePage from "./components/HomePage/HomePage";
 import Dashboard from "./components/Dashboard/Dashboard";
 
 import santaApi from "./api/santaApi";
@@ -225,14 +226,15 @@ function App() {
               signinClick={handlePopupSigninClick}
               isLoggedIn={isLoggedIn}
             />
-            <h1 className='page-title'>Secret Santa 2021</h1>
             <Routes>
               <Route
                 path='/'
                 element={
-                  <TeamView
+                  <HomePage
                     selectedTeam={selectedTeam}
                     setSelectedTeam={setSelectedTeam}
+                    signinClick={handlePopupSigninClick}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />
