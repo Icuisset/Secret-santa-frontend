@@ -1,24 +1,24 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 
-import "./PopupWithForm.css";
+import "./SuccessPopup.css";
 
-function PopupWithForm(props) {
-  /* only to test CSS for now */
-
+function SuccessPopup(props) {
   return (
     <div className={`popup ${props.isOpen && "popup_opened"}`}>
       <div className='popup__overlay' onClick={props.onClose} />
       <div
         className={`popup__container popup__container_type_${props.popupName}`}>
-        <form
-          className={`popup__form popup__form_type_${props.popupName}`}
-          method='POST'
-          name={props.popupName}
-          onSubmit={props.onSubmit}>
-          <h3 className='popup__title'>{props.title}</h3>
-          {props.children}
-        </form>
+        <h3 className='popup__title-message'>
+          Registration successfully completed!
+        </h3>
+        <button
+          type='button'
+          className='popup__next-link'
+          href='#'
+          onClick={props.signinClick}>
+          Sign in
+        </button>
         <button
           type='button'
           className='close-button'
@@ -30,4 +30,4 @@ function PopupWithForm(props) {
   );
 }
 
-export default PopupWithForm;
+export default SuccessPopup;

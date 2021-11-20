@@ -1,20 +1,18 @@
 import React, { useState, useCallback } from "react";
-import UserContext from "../../contexts/CurrentUserContext";
 
-import "./SigninPopup.css";
+import "./SignupPopup.css";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-function SigninPopup(props) {
-  const user = React.useContext(UserContext);
-
+function SignupPopup(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  /* below states are only to test CSS for now */
+  const [name, setName] = useState("");
+
   const [inputsAreValid, setInputsAreValid] = React.useState(false);
 
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
-
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
+  const [usernameErrorMessage, setUsernameErrorMessage] = React.useState("");
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -28,10 +26,17 @@ function SigninPopup(props) {
     setInputsAreValid(event.target.closest("form").checkValidity());
   };
 
+  const handleUsernameChange = (event) => {
+    setName(event.target.value);
+    setUsernameErrorMessage(event.target.validationMessage);
+    setInputsAreValid(event.target.closest("form").checkValidity());
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(event);
-    props.onSignin({
+    props.onSignup({
+      name,
       email,
       password,
     });
@@ -44,12 +49,16 @@ function SigninPopup(props) {
       emailMessage = "",
       passwordValue = "",
       passwordMessage = "",
+      usernameValue = "",
+      usernameMessage = "",
       inputsValid = false
     ) => {
       setEmail(emailValue);
       setEmailErrorMessage(emailMessage);
       setPassword(passwordValue);
       setPasswordErrorMessage(passwordMessage);
+      setName(usernameValue);
+      setUsernameErrorMessage(usernameMessage);
       setInputsAreValid(inputsValid);
     },
     [
@@ -62,19 +71,22 @@ function SigninPopup(props) {
   );
 
   React.useEffect(() => {
-    setEmail(user.email);
+    setEmail("");
     setEmailErrorMessage("");
     setPassword("");
     setPasswordErrorMessage("");
-  }, [user, props.isOpen]);
+    setName("");
+    setUsernameErrorMessage("");
+  }, [props.isOpen]);
 
   return (
     <PopupWithForm
-      popupName={"signin"}
-      title={"Sign in"}
+      popupName={"signup"}
+      title={"Sign up"}
       isOpen={props.isOpen}
       onClose={props.onClose}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+      alternativeLink={"Sign in"}>
       <div className='form__inputs-zone'>
         <div className='form__input-zone'>
           <label className='form__label' htmlFor='profileEmail'>
@@ -86,12 +98,12 @@ function SigninPopup(props) {
             name='emailInput'
             placeholder='Enter email'
             type='email'
-            value={email || ""}
+            value={email}
             onChange={handleEmailChange}
             required
           />
           {emailErrorMessage ? (
-            <span id='profileEmail-error' className='popup__input-error_email'>
+            <span id='profileEmail-error' className='popup__input-error'>
               {emailErrorMessage}
             </span>
           ) : null}
@@ -115,14 +127,36 @@ function SigninPopup(props) {
           {passwordErrorMessage ? (
             <span
               id='profilePassword-error'
-              className='popup__input-error_password'>
+              className='popup__input-error_doubleline'>
               {passwordErrorMessage}
             </span>
           ) : null}
         </div>
-        {props.isWrongCredentials ? (
-          <span id='credentials-error' className='popup__credentials-error'>
-            Please enter correct email address and password.
+        <div className='form__input-zone'>
+          <label className='form__label' htmlFor='name'>
+            Username
+          </label>
+          <input
+            id='name'
+            className='form__input'
+            name='usernameInput'
+            placeholder='Enter your username'
+            type='text'
+            value={name}
+            onChange={handleUsernameChange}
+            required
+            minLength={2}
+            maxLength={30}
+          />
+          {usernameErrorMessage ? (
+            <span id='userName-error' className='popup__input-error_doubleline'>
+              {usernameErrorMessage}
+            </span>
+          ) : null}
+        </div>
+        {props.isNotAvailableEmail ? (
+          <span id='emailnotavailable-error' className='popup__email-error'>
+            This email is not available
           </span>
         ) : null}
       </div>
@@ -132,19 +166,19 @@ function SigninPopup(props) {
           !inputsAreValid && "popup__button_deactivated"
         }`}
         aria-label='submit button'>
-        Sign in
+        Sign up
       </button>
       <div className='popup__alternative-link-zone'>
         <p className='popup__alternative-text'>or</p>
         <button
           type='button'
           className='popup__alternative-link'
-          onClick={props.signupClick}>
-          Sign up
+          onClick={props.signinClick}>
+          Sign in
         </button>
       </div>
     </PopupWithForm>
   );
 }
 
-export default SigninPopup;
+export default SignupPopup;

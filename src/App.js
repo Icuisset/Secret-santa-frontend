@@ -4,13 +4,18 @@ import UserContext from "./contexts/CurrentUserContext";
 
 import "./App.css";
 import "./components/SelectName/SelectName";
+import Privateroute from "./components/Privateroute/Privateroute";
+import Header from "./components/Header/Header";
 import SelectName from "./components/SelectName/SelectName";
 import Giftee from "./components/Giftee/Giftee";
 import Footer from "./components/Footer/Footer";
 import SigninPopup from "./components/SigninPopup/SigninPopup";
+import SignupPopup from "./components/SignupPopup/SignupPopup";
+import SuccessPopup from "./components/SuccessPopup/SuccessPopup";
 import AnimatedBackground from "./animation/AnimatedBackground";
 import Team from "./components/Team/Team";
 import TeamView from "./components/TeamView/TeamView";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 import santaApi from "./api/santaApi";
 import authorize from "./utils/authorize";
@@ -25,11 +30,17 @@ function App() {
   const [initialList, setInitialList] = useState();
   const [availableList, setAvailableList] = useState();
   /* test without popup*/
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [isSigninPopupOpen, setIsSigninPopupOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [currentUser, setCurrentUser] = useState({});
+  /* state for popups */
+  const [isSigninPopupOpen, setIsSigninPopupOpen] = useState(false);
+  const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
+  const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
+
+  /* states for user */
+  const [currentUser, setCurrentUser] = useState("");
   const [isWrongCredentials, setWrongCredentials] = useState(false);
+  const [isNotAvailableEmail, setIsNotAvailableEmail] = useState(false);
   const [token, setToken] = useState();
 
   /**
@@ -128,6 +139,8 @@ function App() {
         localStorage.setItem("token", result.token);
         console.log(result.token);
         setIsSigninPopupOpen(false);
+        setCurrentUser(email);
+        setIsLoggedIn(true);
       })
       .catch((err) => {
         console.log(err);
@@ -135,20 +148,65 @@ function App() {
       });
   };
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      setIsSigninPopupOpen(true);
-    } else {
-      setIsSigninPopupOpen(false);
-    }
-  }, [isLoggedIn]);
+  /**
+   * handle user registration
+   */
+
+  const handleSignUp = ({ name, email, password }) => {
+    authorize
+      .register(name, email, password)
+      .then((result) => {
+        console.log(result);
+        if (result.err) {
+          console.log(result.err);
+        } else {
+          setIsSignupPopupOpen(false);
+          setIsSuccessPopupOpen(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err === "Error: 409") {
+          setIsNotAvailableEmail(true);
+        }
+      });
+  };
 
   /**
-   * handle the closing of all popups
+   * handle log out
    */
+
+  const handleLogOut = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser("");
+    setIsNotAvailableEmail(false);
+    setWrongCredentials(false);
+  };
+
+  /**
+   * handle the opening and  closing of all popups
+   */
+
+  const handlePopupSignupClick = () => {
+    setIsSigninPopupOpen(false);
+    setIsSignupPopupOpen(true);
+  };
+
+  const handlePopupSigninClick = () => {
+    setIsSignupPopupOpen(false);
+    setIsSigninPopupOpen(true);
+  };
+
+  const handleSuccessSigninClick = () => {
+    setIsSuccessPopupOpen(false);
+    setIsSigninPopupOpen(true);
+  };
 
   const closeAllPopups = () => {
     setIsSigninPopupOpen(false);
+    setIsSignupPopupOpen(false);
+    setIsSuccessPopupOpen(false);
     setWrongCredentials(false);
     console.log("popup closed");
   };
@@ -161,6 +219,12 @@ function App() {
             <div className='background'>
               <AnimatedBackground />
             </div>
+            <Header
+              signoutClick={handleLogOut}
+              signupClick={handlePopupSignupClick}
+              signinClick={handlePopupSigninClick}
+              isLoggedIn={isLoggedIn}
+            />
             <h1 className='page-title'>Secret Santa 2021</h1>
             <Routes>
               <Route
@@ -191,6 +255,13 @@ function App() {
               <Route
                 path='/team'
                 element={<Team memberList={apiMembersList} />}></Route>
+              <Route
+                path='/myteams'
+                element={
+                  <Privateroute>
+                    <Dashboard />
+                  </Privateroute>
+                }></Route>
             </Routes>
             <Footer />
           </div>
@@ -200,7 +271,21 @@ function App() {
         isOpen={isSigninPopupOpen}
         onClose={closeAllPopups}
         onSignin={handleSignIn}
+        signupClick={handlePopupSignupClick}
         isWrongCredentials={isWrongCredentials}
+      />
+      <SignupPopup
+        isOpen={isSignupPopupOpen}
+        onClose={closeAllPopups}
+        signinClick={handlePopupSigninClick}
+        onSignup={handleSignUp}
+        isNotAvailableEmail={isNotAvailableEmail}
+      />
+      <SuccessPopup
+        isOpen={isSuccessPopupOpen}
+        onClose={closeAllPopups}
+        popupName='success'
+        signinClick={handleSuccessSigninClick}
       />
     </UserContext.Provider>
   );
