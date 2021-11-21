@@ -65,6 +65,17 @@ class SantaApi {
       }),
     }).then((res) => this._checkResponse(res));
   }
+
+  //DELETE http://localhost:5000/teams/:teamID
+  deleteTeam(id, token) {
+    return fetch(this._baseUrl + "/teams/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => this._checkResponse(res));
+  }
 }
 
 const santaApi = new SantaApi({

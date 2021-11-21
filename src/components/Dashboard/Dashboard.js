@@ -47,6 +47,21 @@ export default function Dashboard() {
     console.log(id);
   }, []);
 
+  const handleDeleteTeam = (id) => {
+    console.log(id, "is going to be deleted");
+    const userToken = localStorage.getItem("token");
+    console.log(userToken);
+    santaApi
+      .deleteTeam(id, userToken)
+      .then((result) => {
+        console.log(result);
+        updateTeamsList();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className='dashboard'>
       <h2>Create a new Team</h2>
@@ -60,13 +75,16 @@ export default function Dashboard() {
           Create Team
         </button>
       </div>
-      <h2>List of existing teams for {currentUser}</h2>
+      <h2 className='dashboard-title'>
+        List of existing Teams for {currentUser}
+      </h2>
       {teams ? (
         Array.from(teams).map((team, index) => (
           <TeamManagement
             key={index}
             team={team}
             handleViewMembers={handleViewMembers}
+            handleDeleteTeam={handleDeleteTeam}
           />
         ))
       ) : (

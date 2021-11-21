@@ -6,18 +6,6 @@
   align-items: center;
 }
 
-.teamslist-item {
-  display: flex;
-  flex-direction: row;
-  width: 70%;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px white solid;
-}
-
-.dashboard-button {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.dashboard-title {
+  margin-top: 50px;
 }
