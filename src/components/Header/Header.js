@@ -15,7 +15,7 @@ export default function Header(props) {
         <div>
           {props.isLoggedIn ? (
             <>
-              <Link to={"/dashboard"}>Create and Manage Teams</Link>
+              <Link to={"/dashboard"}>Teams Dashboard</Link>
               <ButtonCTA onClick={props.signoutClick}> Sign out</ButtonCTA>
             </>
           ) : (

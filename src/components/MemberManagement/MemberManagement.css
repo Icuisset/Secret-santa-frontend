@@ -1,4 +1,46 @@
-.members-zone {
-  position: relative;
-  z-index: 2;
+.teammgt-item {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px white solid;
+}
+
+@media screen and (max-width: 800px) {
+  .teammgt-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.teammgt-title {
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.teammgt-actions {
+  align-self: flex-end;
+}
+
+.dashboard-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  background-color: white;
+  border: white solid 1px;
+  color: #1b2845;
+  padding: 5px;
+}
+
+.dashboard-button:hover {
+  cursor: pointer;
+}
+
+.dashboard-button_secondary {
+  border: white solid 1px;
+  color: white;
+  background-color: transparent;
 }

@@ -1,0 +1,14 @@
+.members-zone {
+  position: relative;
+  z-index: 2;
+}
+
+.dashboard-button {
+  margin: 40px auto 0;
+  padding: 10px 20px 10px;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 22px;
+  text-transform: capitalize;
+  border: 1px solid white;
+}

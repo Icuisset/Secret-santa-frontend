@@ -7,15 +7,16 @@ export default function TeamManagement({
   handleViewMembers,
   handleDeleteTeam,
 }) {
+  const teamLink = "/" + team.name + "/" + team._id;
   return (
-    <div className='teamslist-item'>
+    <div className='teammgt-item'>
       <div>
-        <h3>{team.name}</h3>
-        <p>Team ID = {team._id}</p>
+        <h3 className='teammgt-title'>{team.name}</h3>
+        <p>Team Private ID = {team._id}</p>
       </div>
-      <div>
+      <div className='teammgt-actions'>
         <Link
-          to='members'
+          to={teamLink}
           onClick={() => {
             handleViewMembers(team._id);
           }}

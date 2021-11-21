@@ -19,7 +19,7 @@ import HomePage from "./components/HomePage/HomePage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import santaApi from "./api/santaApi";
 import authorize from "./utils/authorize";
-import MemberManagement from "./components/MemberManagement/MemberManagement";
+import MemberDashboard from "./components/MemberDashboard/MemberDashboard";
 
 function App() {
   const [apiMembersList, setApiMembersList] = useState();
@@ -265,8 +265,12 @@ function App() {
                   </Privateroute>
                 }></Route>
               <Route
-                path='/dashboard/members'
-                element={<MemberManagement />}></Route>
+                path='/:teamname/:teamid'
+                element={
+                  <Privateroute>
+                    <MemberDashboard />
+                  </Privateroute>
+                }></Route>
             </Routes>
             <Footer />
           </div>

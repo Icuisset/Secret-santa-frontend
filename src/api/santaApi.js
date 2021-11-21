@@ -76,6 +76,32 @@ class SantaApi {
       },
     }).then((res) => this._checkResponse(res));
   }
+
+  //POST http://localhost:5000/teams
+  createMember(teamid, name, token) {
+    return fetch(this._baseUrl + "/members", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: name,
+        teamid: teamid,
+      }),
+    }).then((res) => this._checkResponse(res));
+  }
+
+  //DELETE http://localhost:5000/members/:memberID
+  deleteMember(id, token) {
+    return fetch(this._baseUrl + "/members/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => this._checkResponse(res));
+  }
 }
 
 const santaApi = new SantaApi({
