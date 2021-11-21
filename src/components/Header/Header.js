@@ -10,16 +10,16 @@ export default function Header(props) {
     <>
       <header className='header'>
         <Link className='header-link' to={"/"}>
-          MySecretSanta
+          SecretSantaTEAM
         </Link>
         <div>
           {props.isLoggedIn ? (
             <>
-              <Link className='header-link' to={"/dashboard"}>
-                Dashboard
-              </Link>
               <Link className='header-link' to={"/"}>
                 Home
+              </Link>
+              <Link className='header-link' to={"/dashboard"}>
+                Dashboard
               </Link>
               <ButtonCTA onClick={props.signoutClick}> Sign out</ButtonCTA>
             </>
