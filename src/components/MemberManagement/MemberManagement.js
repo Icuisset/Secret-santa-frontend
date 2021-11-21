@@ -3,19 +3,19 @@ import "./MemberManagement.css";
 
 export default function MemberManagement({ member, handleDeleteMember }) {
   return (
-    <div className='teammgt-item'>
+    <div className='membermgt-item'>
       <div>
-        <h3 className='teammgt-title'>{member.name}</h3>
+        <h3 className='membermmgt-title'>{member.name}</h3>
         <p>Team Private ID = {member._id}</p>
       </div>
-      <div className='teammgt-actions'>
+      <div className='membermgt-actions'>
         <button
           type='button'
           onClick={() => {
             handleDeleteMember(member._id);
           }}
-          className='dashboard-button dashboard-button_secondary'>
-          Delete Team
+          className='membermgt-button membermgt-button_secondary'>
+          Delete Member
         </button>
       </div>
     </div>

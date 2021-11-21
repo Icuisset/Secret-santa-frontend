@@ -70,8 +70,13 @@ export default function Dashboard() {
     <div className='dashboard'>
       <h2>Create a new Team</h2>
       <div>
-        <input value={newTeam} onChange={(e) => setNewTeam(e.target.value)} />
+        <input
+          className='dashboard-input'
+          value={newTeam}
+          onChange={(e) => setNewTeam(e.target.value)}
+        />
         <button
+          className='dashboard-button'
           type='button'
           onClick={() => {
             handleCreateTeam(newTeam);

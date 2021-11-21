@@ -103,7 +103,8 @@
 }
 
 .popup__button:active {
-  background-color: #2a65cc;
+  background-color: #68d8d6;
+  color: black;
 }
 
 .popup__alternative-link-zone {

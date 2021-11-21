@@ -24,6 +24,7 @@ export default function TeamView({
             </p>
             <input value={teamID} onChange={(e) => setTeamID(e.target.value)} />
             <button
+              className='show-button'
               type='button'
               onClick={() => {
                 setSelectedTeam(teamID);
@@ -33,14 +34,19 @@ export default function TeamView({
             {!isLoggedIn ? (
               <>
                 <p>- OR -</p>
-                <button type='button' onClick={signinClick}>
+                <button
+                  type='button'
+                  className='show-button'
+                  onClick={signinClick}>
                   Sign in to create a new team
                 </button>
               </>
             ) : (
               <>
                 <p>- OR -</p>
-                <Link to='/dashboard'>Create and manage teams</Link>
+                <Link className='show-button' to='/dashboard'>
+                  Create and manage teams
+                </Link>
               </>
             )}
           </>

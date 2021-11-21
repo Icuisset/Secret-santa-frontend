@@ -183,6 +183,7 @@ function App() {
     setCurrentUser("");
     setIsNotAvailableEmail(false);
     setWrongCredentials(false);
+    setSelectedTeam();
   };
 
   /**

@@ -11,3 +11,7 @@
     flex-direction: column;
   }
 }
+
+.header-link {
+  margin-right: 20px;
+}

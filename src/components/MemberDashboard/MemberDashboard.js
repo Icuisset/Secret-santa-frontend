@@ -65,15 +65,16 @@ export default function MemberDashboard() {
 
   return (
     <div className='members-zone'>
-      <p>Hello</p>
-      <div className='dashboard'>
-        <h2>Create a new Team</h2>
+      <div className='member-dashboard'>
+        <h2>Create a new Member</h2>
         <div>
           <input
+            className='member-dashboard-input'
             value={newMember}
             onChange={(e) => setNewMember(e.target.value)}
           />
           <button
+            className='member-dashboard-button'
             type='button'
             onClick={() => {
               handleCreateMember(newMember);
@@ -81,23 +82,23 @@ export default function MemberDashboard() {
             Create Member
           </button>
         </div>
-        <h2 className='dashboard-title'>
+        <h2 className='member-dashboard-title'>
           List of existing Members for {teamName}
         </h2>
         {isLoading ? <LoadingSpinner /> : null}
-        {members ? (
+        {members?.length > 0 ? (
           Array.from(members).map((member, index) => (
             <MemberManagement
               key={index}
               member={member}
-              handleDeleteTeam={handleDeleteMember}
+              handleDeleteMember={handleDeleteMember}
             />
           ))
         ) : (
-          <p>You have not created any member yet</p>
+          <p>You have not created any member yet!</p>
         )}
       </div>
-      <Link to='/dashboard' className='dahsboard-button'>
+      <Link to='/dashboard' className='member-dashboard-button'>
         Go Back to Teams
       </Link>
     </div>

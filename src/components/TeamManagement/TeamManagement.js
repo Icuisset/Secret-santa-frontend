@@ -20,7 +20,7 @@ export default function TeamManagement({
           onClick={() => {
             handleViewMembers(team._id);
           }}
-          className='dashboard-button'>
+          className='teammgt-button'>
           View Members
         </Link>
         <button
@@ -28,7 +28,7 @@ export default function TeamManagement({
           onClick={() => {
             handleDeleteTeam(team._id);
           }}
-          className='dashboard-button dashboard-button_secondary'>
+          className='teammgt-button teammgt-button_secondary'>
           Delete Team
         </button>
       </div>

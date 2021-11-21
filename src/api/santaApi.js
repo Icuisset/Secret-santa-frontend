@@ -77,9 +77,9 @@ class SantaApi {
     }).then((res) => this._checkResponse(res));
   }
 
-  //POST http://localhost:5000/teams
+  //POST http://localhost:5000/private/members
   createMember(teamid, name, token) {
-    return fetch(this._baseUrl + "/members", {
+    return fetch(this._baseUrl + "/private/members", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -92,9 +92,9 @@ class SantaApi {
     }).then((res) => this._checkResponse(res));
   }
 
-  //DELETE http://localhost:5000/members/:memberID
+  //DELETE http://localhost:5000/private/members/:memberID
   deleteMember(id, token) {
-    return fetch(this._baseUrl + "/members/" + id, {
+    return fetch(this._baseUrl + "/private/members/" + id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
