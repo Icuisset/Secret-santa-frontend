@@ -51,6 +51,20 @@ class SantaApi {
       },
     }).then((res) => this._checkResponse(res));
   }
+
+  //POST http://localhost:5000/teams
+  createTeam(name, token) {
+    return fetch(this._baseUrl + "/teams", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: name,
+      }),
+    }).then((res) => this._checkResponse(res));
+  }
 }
 
 const santaApi = new SantaApi({
