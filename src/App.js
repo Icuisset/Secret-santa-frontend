@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import UserContext from "./contexts/CurrentUserContext";
 
@@ -258,7 +258,7 @@ function App() {
                 path='/team'
                 element={<Team memberList={apiMembersList} />}></Route>
               <Route
-                path='/myteams'
+                path='/dashboard'
                 element={
                   <Privateroute>
                     <Dashboard />

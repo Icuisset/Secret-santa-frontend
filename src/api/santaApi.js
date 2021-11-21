@@ -41,6 +41,16 @@ class SantaApi {
       }),
     }).then((res) => this._checkResponse(res));
   }
+
+  //GET http://localhost:5000/teams/me
+  getUserTeams(token) {
+    return fetch(this._baseUrl + "/teams/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => this._checkResponse(res));
+  }
 }
 
 const santaApi = new SantaApi({

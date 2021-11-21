@@ -40,7 +40,7 @@ export default function TeamView({
             ) : (
               <>
                 <p>- OR -</p>
-                <Link to='/myteams'>Create and manage teams</Link>
+                <Link to='/dashboard'>Create and manage teams</Link>
               </>
             )}
           </>

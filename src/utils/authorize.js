@@ -60,7 +60,7 @@ class Authorize {
 }
 
 const authorize = new Authorize({
-  baseUrl: "https://api.meetyoursanta.com",
+  baseUrl: process.env.REACT_APP_API_URL,
 });
 
 export default authorize;

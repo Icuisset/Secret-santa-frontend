@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from "react";
 
-import "./SignupPopup.css";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
+
+import "./SignupPopup.css";
 
 function SignupPopup(props) {
   const [email, setEmail] = useState("");
