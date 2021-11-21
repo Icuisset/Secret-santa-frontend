@@ -17,9 +17,9 @@ import AnimatedBackground from "./animation/AnimatedBackground";
 import Team from "./components/Team/Team";
 import HomePage from "./components/HomePage/HomePage";
 import Dashboard from "./components/Dashboard/Dashboard";
-
 import santaApi from "./api/santaApi";
 import authorize from "./utils/authorize";
+import MemberManagement from "./components/MemberManagement/MemberManagement";
 
 function App() {
   const [apiMembersList, setApiMembersList] = useState();
@@ -258,12 +258,15 @@ function App() {
                 path='/team'
                 element={<Team memberList={apiMembersList} />}></Route>
               <Route
-                path='/dashboard'
+                path='/dashboard/'
                 element={
                   <Privateroute>
                     <Dashboard />
                   </Privateroute>
                 }></Route>
+              <Route
+                path='/dashboard/members'
+                element={<MemberManagement />}></Route>
             </Routes>
             <Footer />
           </div>

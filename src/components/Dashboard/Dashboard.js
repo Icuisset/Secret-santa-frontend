@@ -3,6 +3,7 @@ import { useContext } from "react";
 import UserContext from "../../contexts/CurrentUserContext";
 import santaApi from "../../api/santaApi";
 import TeamManagement from "../TeamManagement/TeamManagement";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import "./Dashboard.css";
 
 export default function Dashboard() {
@@ -10,6 +11,7 @@ export default function Dashboard() {
 
   const [teams, setTeams] = useState();
   const [newTeam, setNewTeam] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCreateTeam = (team) => {
     const token = localStorage.getItem("token");
@@ -26,6 +28,7 @@ export default function Dashboard() {
   };
 
   const updateTeamsList = () => {
+    setIsLoading(true);
     const userToken = localStorage.getItem("token");
     console.log(userToken);
     santaApi
@@ -33,6 +36,7 @@ export default function Dashboard() {
       .then((result) => {
         console.log(result);
         setTeams(result);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -78,6 +82,7 @@ export default function Dashboard() {
       <h2 className='dashboard-title'>
         List of existing Teams for {currentUser}
       </h2>
+      {isLoading ? <LoadingSpinner /> : null}
       {teams ? (
         Array.from(teams).map((team, index) => (
           <TeamManagement

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./TeamManagement.css";
 
 export default function TeamManagement({
@@ -13,14 +14,14 @@ export default function TeamManagement({
         <p>Team ID = {team._id}</p>
       </div>
       <div>
-        <button
-          type='button'
+        <Link
+          to='members'
           onClick={() => {
             handleViewMembers(team._id);
           }}
           className='dashboard-button'>
           View Members
-        </button>
+        </Link>
         <button
           type='button'
           onClick={() => {
