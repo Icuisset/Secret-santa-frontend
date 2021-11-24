@@ -40,7 +40,7 @@ export default function MemberProfile() {
 
   useEffect(() => {
     getMemberProfile();
-  }, [member]);
+  }, []);
 
   const checkSize = (file) => {
     if (file.size > 100000) {
