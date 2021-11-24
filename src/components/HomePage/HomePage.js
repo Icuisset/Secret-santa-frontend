@@ -18,11 +18,16 @@ export default function TeamView({
       <div className='show-zone'>
         {!selectedTeam ? (
           <>
-            <p>
-              View an existing team, update your member profile and draw your
-              giftee
+            <p className='page-message'>
+              Enter your team secret ID to view your team, update your member
+              profile and draw your giftee
             </p>
-            <input value={teamID} onChange={(e) => setTeamID(e.target.value)} />
+            <input
+              className='page-input'
+              value={teamID}
+              placeholder='Enter your team secret ID'
+              onChange={(e) => setTeamID(e.target.value)}
+            />
             <button
               className='show-button'
               type='button'
@@ -53,6 +58,10 @@ export default function TeamView({
         ) : null}
         {selectedTeam ? (
           <>
+            <Link to='/update' className='show-button'>
+              Update your profile
+            </Link>
+            <p className='show-text_between'> - OR - </p>
             <Link to='/team' className='show-button'>
               View your Team
             </Link>

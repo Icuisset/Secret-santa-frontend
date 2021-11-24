@@ -20,6 +20,8 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import santaApi from "./api/santaApi";
 import authorize from "./utils/authorize";
 import MemberDashboard from "./components/MemberDashboard/MemberDashboard";
+import MemberProfile from "./components/MemberProfile/MemberProfile";
+import SelectMember from "./components/SelectMember/SelectMember";
 
 function App() {
   const [apiMembersList, setApiMembersList] = useState();
@@ -247,6 +249,7 @@ function App() {
                     selectedName={selectedName}
                     changeSelection={changeSelection}
                     pickSantaGiftee={drawSantaGiftee}
+                    selectedMember={selectedMember}
                   />
                 }
               />
@@ -258,6 +261,12 @@ function App() {
               <Route
                 path='/team'
                 element={<Team memberList={apiMembersList} />}></Route>
+              <Route
+                path='/members/:memberid'
+                element={<MemberProfile />}></Route>
+              <Route
+                path='/update'
+                element={<SelectMember memberList={apiMembersList} />}></Route>
               <Route
                 path='/dashboard/'
                 element={

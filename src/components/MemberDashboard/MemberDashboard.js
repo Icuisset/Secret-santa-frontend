@@ -69,6 +69,7 @@ export default function MemberDashboard() {
         <h2>Create a new Member</h2>
         <div>
           <input
+            type='text'
             className='member-dashboard-input'
             value={newMember}
             onChange={(e) => setNewMember(e.target.value)}

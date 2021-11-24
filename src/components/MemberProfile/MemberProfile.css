@@ -1,0 +1,53 @@
+.profile-zone {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.update-message {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.update-zone {
+  margin-top: 40px;
+}
+
+.member-profile-input {
+  background-color: white;
+  width: 90%;
+  color: black;
+  border: #68d8d6 solid 2px;
+  padding: 10px 20px 10px;
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.member-profile-input_message {
+  height: 150px;
+}
+
+.profile-button {
+  margin: 20px auto 40px;
+  padding: 10px 20px 10px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-weight: 400;
+  font-size: 22px;
+  text-transform: capitalize;
+  border: 2px solid #68d8d6;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+.profile-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}

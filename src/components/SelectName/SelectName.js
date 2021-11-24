@@ -7,6 +7,7 @@ export default function SelectName({
   selectedName,
   changeSelection,
   pickSantaGiftee,
+  selectedMember,
 }) {
   return (
     <>
@@ -28,12 +29,14 @@ export default function SelectName({
             : null}
         </select>
         {selectedName !== "" ? (
-          <Link
-            to='/giftee'
-            className='confirm-button'
-            onClick={pickSantaGiftee}>
-            Draw your Santa Giftee!
-          </Link>
+          <>
+            <Link
+              to='/giftee'
+              className='confirm-button'
+              onClick={pickSantaGiftee}>
+              Draw your Santa Giftee!
+            </Link>
+          </>
         ) : null}
       </div>
     </>

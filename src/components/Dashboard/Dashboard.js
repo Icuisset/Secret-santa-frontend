@@ -72,6 +72,7 @@ export default function Dashboard() {
       <div>
         <input
           className='dashboard-input'
+          type='text'
           value={newTeam}
           onChange={(e) => setNewTeam(e.target.value)}
         />

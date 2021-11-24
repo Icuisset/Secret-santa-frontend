@@ -12,6 +12,13 @@ class SantaApi {
     return Promise.reject(`Error: ${res.status}`);
   }
 
+  //GET http://localhost:5000/members/:memberid
+  getMember(memberid) {
+    return fetch(this._baseUrl + "/members/" + memberid, {
+      method: "GET",
+    }).then((res) => this._checkResponse(res));
+  }
+
   //GET http://localhost:5000/members
   getTeamMembers(teamid) {
     return fetch(this._baseUrl + "/members/team/" + teamid, {
@@ -100,6 +107,30 @@ class SantaApi {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+    }).then((res) => this._checkResponse(res));
+  }
+
+  //PATCH http://localhost:5000/members/avatar
+  updateMemberAvatar(id, url) {
+    return fetch(this._baseUrl + "/members/avatar", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        _id: id,
+        avatar: url,
+      }),
+    }).then((res) => this._checkResponse(res));
+  }
+
+  //PATCH http://localhost:5000/members/message
+  updateMemberMessage(id, message) {
+    return fetch(this._baseUrl + "/members/message", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        _id: id,
+        message: message,
+      }),
     }).then((res) => this._checkResponse(res));
   }
 }

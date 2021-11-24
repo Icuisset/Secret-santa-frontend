@@ -16,12 +16,12 @@
 
 .show-text_between {
   font-size: 24px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .show-button {
-  margin: 40px auto 40px;
+  margin: 20px auto 20px;
   padding: 10px 20px 10px;
   background-color: transparent;
   color: white;
@@ -37,4 +37,19 @@
 .show-button:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.page-message {
+  font-size: 28px;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-input {
+  width: 300px;
+  margin: 0 auto 0;
+  font-size: 22px;
+  padding: 5px;
+  border: 2px solid #68d8d6;
 }

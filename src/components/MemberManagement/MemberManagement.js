@@ -1,14 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./MemberManagement.css";
 
 export default function MemberManagement({ member, handleDeleteMember }) {
+  const profileLink = "/members/" + member._id;
   return (
     <div className='membermgt-item'>
       <div>
         <h3 className='membermmgt-title'>{member.name}</h3>
-        <p>Team Private ID = {member._id}</p>
       </div>
       <div className='membermgt-actions'>
+        <Link to={profileLink} className='teammgt-button'>
+          View Profile
+        </Link>
         <button
           type='button'
           onClick={() => {
