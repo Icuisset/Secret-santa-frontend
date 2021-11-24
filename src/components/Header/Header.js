@@ -9,7 +9,7 @@ export default function Header(props) {
   return (
     <>
       <header className='header'>
-        <Link className='header-link' to={"/"}>
+        <Link className='header-link header-link_logo' to={"/"}>
           SecretSantaTEAM
         </Link>
         <div>

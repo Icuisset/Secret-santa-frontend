@@ -19,8 +19,8 @@ export default function TeamView({
         {!selectedTeam ? (
           <>
             <p className='page-message'>
-              Enter your team secret ID to view your team, update your member
-              profile and draw your giftee
+              Enter your team secret ID to view your team, <br />
+              update your member profile and draw your giftee
             </p>
             <input
               className='page-input'

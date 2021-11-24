@@ -10,3 +10,9 @@
 .button-SCD:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 750px) {
+  .button-SCD {
+    margin: 0 10px;
+  }
+}
