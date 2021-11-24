@@ -40,7 +40,7 @@ export default function MemberProfile() {
 
   useEffect(() => {
     getMemberProfile();
-  }, []);
+  }, [member]);
 
   const checkSize = (file) => {
     if (file.size > 100000) {
@@ -63,6 +63,7 @@ export default function MemberProfile() {
       .updateMemberAvatar(memberID, url)
       .then((result) => {
         console.log(result);
+        setMember(result);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -88,7 +89,6 @@ export default function MemberProfile() {
             console.log("Success:", result.secure_url);
             const avatarURL = result.secure_url;
             updateAvatar(avatarURL);
-            getMemberProfile();
             setSelectedFile();
           })
           .catch((error) => {
