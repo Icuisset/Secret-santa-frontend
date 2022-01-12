@@ -1,6 +1,6 @@
 ## Collection_Santa_Frontend
 
-FrontEnd React Application for MYSECRETSANTATEAM.COM mini project
+FrontEnd React Application for Secret Santa mini project
 
 ---
 
